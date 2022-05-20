@@ -1,15 +1,19 @@
-from flask import Flask
-app = Flask(__name__)
+import json
 
-@app.route('/')
-def hello():
-    name = "Hello World"
-    return name
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
+ 
+file = open('ac.json','r')
+info = json.load(file)
 
-@app.route('/good')
-def good():
-    name = "Good"
-    return name
+CHANNEL_ACCESS_TOKEN = info['CHANNEL_ACCESS_TOKEN']
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+def main():
+    USER_ID = info['USER_ID']
+    messages = TextSendMessage(text= "チャンネル名が変更しました")
+    line_bot_api.push_message(USER_ID,messages=messages)
+
+if __name__ =="__main__":
+    main()
+    
