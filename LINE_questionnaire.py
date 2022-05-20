@@ -243,4 +243,4 @@ else if(event.type == "postback") {
         sheet_userlist.getRange(i+1, 4).setValue(w_item);//スプレッドシートに年代の回答を入力
         survey_end(event);//アンケートありがとうのリプライメッセージ送信
       }
-    }
+}
